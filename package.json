@@ -4,7 +4,7 @@
     "./dist"
   ],
   "publishConfig": {
-    "registry": "https://npm.pkg.github.com"
+    "@sanketw12:registry": "https://npm.pkg.github.com"
   },
   "repository": "git://github.com/SanketW12/react-scanned-qr.git",
   "version": "1.0.0",
