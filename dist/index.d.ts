@@ -20,8 +20,9 @@ interface QRScannerProps {
     videoStyle?: React.CSSProperties;
     videoClassName?: string | undefined;
     loadingComponent?: JSX.Element;
+    buttonComponent?: JSX.Element | null | undefined;
 }
-declare function QRScanner({ onScanned, onError, onLoad, delay, facingMode, legacyMode, resolution, showViewFinder, videoStyle, videoClassName, button, buttonLabel, buttonStyle, buttonClassName, loadingComponent, }: QRScannerProps): JSX.Element;
+declare function QRScanner({ onScanned, onError, onLoad, delay, facingMode, legacyMode, resolution, showViewFinder, videoStyle, videoClassName, buttonComponent, button, buttonLabel, buttonStyle, buttonClassName, loadingComponent, }: QRScannerProps): JSX.Element;
 
 interface QRCodeProps {
     onScanned: (data: string | null) => void;

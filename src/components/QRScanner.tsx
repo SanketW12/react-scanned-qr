@@ -25,7 +25,6 @@ export interface QRScannerProps {
   videoStyle?: React.CSSProperties;
   videoClassName?: string | undefined;
   loadingComponent?: JSX.Element;
-  buttonComponent?: JSX.Element | null | undefined;
 }
 
 function QRScanner({
@@ -42,7 +41,6 @@ function QRScanner({
     width: 256,
   },
   videoClassName,
-  buttonComponent = null,
   button,
   buttonLabel,
   buttonStyle,
@@ -75,15 +73,13 @@ function QRScanner({
   ) : (
     <div>
       {showButton ? (
-        buttonComponent ?? (
-          <button
-            style={buttonStyle}
-            className={buttonClassName}
-            onClick={() => setShowButton(false)}
-          >
-            {buttonLabel}
-          </button>
-        )
+        <button
+          style={buttonStyle}
+          className={buttonClassName}
+          onClick={() => setShowButton(false)}
+        >
+          {buttonLabel}
+        </button>
       ) : (
         <QrReader
           onScan={handleScan}
