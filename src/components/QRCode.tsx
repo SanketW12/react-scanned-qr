@@ -27,7 +27,7 @@ function QRCode({
   size,
   level,
 }: QRCodeProps) {
-  const [id] = React.useState("");
+  const [id] = React.useState(uuidv4());
 
   useEffect(() => {
     joinRoom();
