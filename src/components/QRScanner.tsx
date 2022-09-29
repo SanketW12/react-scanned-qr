@@ -61,7 +61,7 @@ function QRScanner({
   const handleScan = (data: any) => {
     if (data) {
       if (data) {
-        let id = data.substr(0, 35);
+        let id = data.substr(0, 36);
         let value = data.substr(36, data.length - 1);
         setTimeout(() => {
           setLoading(false);
