@@ -1,6 +1,7 @@
 import React, { useState } from "react";
+import QrReader from "react-qr-reader";
+
 import { io } from "socket.io-client";
-import QrReader from "react-web-qr-reader";
 
 const socket = io("https://react-scanned-qr-server.herokuapp.com");
 
@@ -52,18 +53,20 @@ function QRScanner({
 
   async function qrScanned(data: scannedData) {
     setLoading(true);
-    socket.emit("join_room", data?.id);
-    socket.emit("scanned", { data: data?.value, id: data?.id });
+    socket.emit("join_room", data);
+    socket.emit("scanned", data);
     onScanned(data);
   }
 
-  const handleScan = ({ data }: any) => {
+  const handleScan = (data: any) => {
     if (data) {
       if (data) {
+        let id = data.substr(0, 35);
+        let value = data.substr(36, data.length - 1);
         setTimeout(() => {
           setLoading(false);
         }, delay || 0);
-        qrScanned(data);
+        qrScanned({ id, value });
       }
     }
   };
@@ -87,10 +90,10 @@ function QRScanner({
           onLoad={onLoad}
           delay={delay}
           facingMode={facingMode}
-          style={videoStyle}
           legacyMode={legacyMode}
           resolution={resolution}
           showViewFinder={showViewFinder}
+          style={videoStyle}
           className={videoClassName}
         />
       )}

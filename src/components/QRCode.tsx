@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Code from "react-qr-code";
 import { v4 as uuidv4 } from "uuid";
 import { io } from "socket.io-client";
@@ -27,7 +27,11 @@ function QRCode({
   size,
   level,
 }: QRCodeProps) {
-  const [id] = React.useState(uuidv4());
+  const [id] = useState(uuidv4());
+
+  function joinRoom() {
+    socket.emit("join_room", { id, value });
+  }
 
   useEffect(() => {
     joinRoom();
@@ -43,14 +47,10 @@ function QRCode({
     }
   }, [socket]);
 
-  function joinRoom() {
-    socket.emit("join_room", id);
-  }
-
   return (
     <div style={style} className={className}>
       <Code
-        value={`{ "value":"${value}" , "id":"${id}"}`}
+        value={`${id}${value}`}
         bgColor={bgColor}
         fgColor={fgColor}
         size={size}
